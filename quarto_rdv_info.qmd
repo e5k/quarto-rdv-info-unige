@@ -420,6 +420,8 @@ flowchart TB
 ... learning curve to get into some more complex workflows
 
 
+
+
 <span style="font-size: 0.5em;">&nbsp;</span>
 
 <!-- BEGIN COL -->
@@ -428,11 +430,15 @@ flowchart TB
 
 
 ::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
-This presentation / examples
+**This presentation / examples**
+
 
 :::
+
+---
+
 ::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
-[<i class="fa-brands fa-github" style="font-size: 3em;"></i>](test.html)
+[<i class="fa-brands fa-github" style="font-size: 3em;"></i>](https://github.com/e5k/quarto-rdv-info-unige)
 :::
 
 :::
@@ -443,9 +449,12 @@ This presentation / examples
 
 
 ::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
-My teaching template
+**My teaching template**
 
 :::
+
+---
+
 ::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
 [<i class="fa-brands fa-github" style="font-size: 3em;"></i>](test.html)
 :::
@@ -454,17 +463,29 @@ My teaching template
 :::: 
 <!-- END COL -->
 
+**Examples**
+
+
+<!-- BEGIN COL -->
+:::: {.columns} 
+::: {.column width="33%"}
+<i class="fa-solid fa-globe"></i> [Volcanology](https://e5k.github.io/Volcano/)
+:::
+::: {.column width="43%"}
+<i class="fa-solid fa-globe"></i> [Outils informatiques](https://e5k.github.io/outils-info-2/)
+:::
+::: {.column width="23%"}
+<i class="fa-solid fa-globe"></i> [Data science](https://elste-master.github.io/Data-Science/)
+:::
+:::: 
+<!-- END COL -->
+
+
+
+
 ::: {.notes}
 
 - Large community
 
 :::
 
-
-
-## Resources
-
-- [Quarto / Get started](https://quarto.org/docs/get-started/)
-- [Markdown](https://www.markdownguide.org)
-- [YAML](https://yaml.org/about/)
-- [Pandoc](https://pandoc.org)
