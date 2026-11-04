@@ -4,15 +4,6 @@ subtitle: "Write, analyze, and publish in a single document"
 ---
 
 
-<!--
-
-- Heads up: I am not going to be able to go into all functionalities
-  - Rapid to get started, but customisation options are infinite, leaning towards potentially complex workflows
-
- -->
-
-
-
 # Why [Quarto]{.alert}? {background-color="#2F4647"}
 
 
@@ -438,7 +429,7 @@ flowchart TB
 ---
 
 ::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
-[<i class="fa-brands fa-github" style="font-size: 3em;"></i>](https://github.com/e5k/quarto-rdv-info-unige)
+[<i class="fa-brands fa-github" style="font-size: 2em;"></i>](https://github.com/e5k/quarto-rdv-info-unige)
 :::
 
 :::
@@ -456,7 +447,7 @@ flowchart TB
 ---
 
 ::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
-[<i class="fa-brands fa-github" style="font-size: 3em;"></i>](test.html)
+[<i class="fa-brands fa-github" style="font-size: 2em;"></i>](https://github.com/e5k/quarto-teaching-template)
 :::
 
 :::

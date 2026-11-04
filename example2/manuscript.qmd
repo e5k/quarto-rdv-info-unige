@@ -1,28 +1,22 @@
 ---
 title: "Campi Flegrei glass geochemistry"
-format:
-  pdf:
-    pdf-engine: xelatex
-    papersize: a4
-    fontsize: 10pt
-    geometry: margin=18mm
-    fig-format: pdf
-  docx: default
 ---
 
-{{< meta affiliation >}}\
-{{< meta email >}}
-
 ```{python}
-from analysis import load_data, scatter_plot, summary_table, MIN_SIO2
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
-data = load_data()
+url = "https://raw.githubusercontent.com/ELSTE-Master/Data-Science/main/Data/Smith_glass_post_NYT_data_majors.csv"
+data = pd.read_csv(url)
+data = data[data["Eruption"].isin(["Monte Nuovo", "Astroni 6", "Fondi di Baia"])]
+data = data.dropna(subset=["SIO2", "K2O"])
 n_analyses = len(data)
 n_eruptions = data["Eruption"].nunique()
 mean_sio2 = round(float(data["SIO2"].mean()), 2)
 ```
 
-We use the glass-composition dataset (@Smith2011), selecting the Monte Nuovo, Astroni 6 and Fondi di Baia eruptions. Complete SiO~2~ and K~2~O analyses are retained with at least `{python} MIN_SIO2` wt. % SiO~2~. Oxides are used as supplied, without anhydrous normalization; counts refer to analyses, not necessarily independent samples.
+We use the glass-composition dataset (@Smith2011), selecting the Monte Nuovo, Astroni 6 and Fondi di Baia eruptions. We retain analyses with both SiO~2~ and K~2~O measurements. Oxides are used as supplied, without anhydrous normalization; counts refer to analyses, not necessarily independent samples.
 
 The selection contains **`{python} n_analyses` glass analyses** from **`{python} n_eruptions` eruptions**, with a mean SiO~2~ content of **`{python} mean_sio2` wt. %**.
 
@@ -32,14 +26,18 @@ The selection contains **`{python} n_analyses` glass analyses** from **`{python}
 #| label: fig-geochemistry
 #| fig-cap: "Glass compositions for the selected Campi Flegrei eruptions."
 #| fig-alt: "Scatter plot of potassium oxide against silica, colored by eruption."
-scatter_plot(data)
+plt.figure(figsize=(6.6, 2.7))
+sns.scatterplot(data=data, x="SIO2", y="K2O", hue="Eruption")
+plt.tight_layout()
+plt.show()
 ```
 
 ```{python}
 #| label: tbl-geochemistry
 #| tbl-cap: "Mean oxide contents by eruption (wt. %)."
 #| output: asis
-print(summary_table(data).to_markdown())
+table = data.groupby("Eruption")[["SIO2", "K2O"]].mean().round(2)
+print(table.to_markdown())
 ```
 
 ## References

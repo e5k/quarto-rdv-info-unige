@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sébastien Biass">
+<meta name="author" content="Seb">
 
-<title>Untitled</title>
+<title>My first document</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Untitled</h1>
+<h1 class="title">My first document</h1>
+<p class="subtitle lead">A test</p>
 </div>
 
 
@@ -93,7 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Sébastien Biass </p>
+             <p>Seb </p>
           </div>
   </div>
     
@@ -106,24 +107,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="title" class="level1">
-<h1>Title</h1>
-<section id="subtitle" class="level2">
-<h2 class="anchored" data-anchor-id="subtitle">Subtitle</h2>
-<p><strong>Quarto</strong> is a <em>tool</em>. As I say:</p>
+<section id="subsection" class="level2">
+<h2 class="anchored" data-anchor-id="subsection">Subsection</h2>
+<p><strong>Quarto</strong> is a <em>tool</em>, and as I say:</p>
 <blockquote class="blockquote">
-<p>Yey!</p>
+<p>Yey</p>
 </blockquote>
-<section id="lets-code" class="level3">
-<h3 class="anchored" data-anchor-id="lets-code">Let’s code!</h3>
-<p>Let’s look at <a href="#lst-code" class="quarto-xref">Listing&nbsp;1</a>:</p>
-<div id="9f9e833e" class="cell" data-execution_count="1">
-<div id="lst-code" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<section id="subsection-lets-code" class="level3">
+<h3 class="anchored" data-anchor-id="subsection-lets-code">Subsection: let’s code</h3>
+<ol type="1">
+<li>Code</li>
+<li>Figure</li>
+</ol>
+<p><a href="#lst-code1" class="quarto-xref">Listing&nbsp;1</a> is my first code:</p>
+<div id="19db546a" class="cell" data-execution_count="1">
+<div id="lst-code1" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Listing&nbsp;1: My first listing
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-code1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;1: this is my first code
 </figcaption>
-<div aria-describedby="lst-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="lst-code1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -133,26 +136,25 @@ Listing&nbsp;1: My first listing
 </figure>
 </div>
 </div>
-<p>I can also treat the output as a <strong>figure</strong> (<a href="#fig-fig1" class="quarto-xref">Figure&nbsp;1</a>)</p>
-<div id="cell-fig-fig1" class="cell" data-execution_count="2">
+<p>Let’s look at my amazing <a href="#fig-plot" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="cell-fig-plot" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>x,y<span class="op">=</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x<span class="op">=</span>x, y<span class="op">=</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-fig1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-fig1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="test_doc_files/figure-html/fig-fig1-output-1.png" width="571" height="411" class="figure-img">
+<div aria-describedby="fig-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="test_doc_files/figure-html/fig-plot-output-1.png" width="571" height="411" class="figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fig1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: the output of my plot
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: This is my first plot
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-</section>
 </section>
 </section>
 
