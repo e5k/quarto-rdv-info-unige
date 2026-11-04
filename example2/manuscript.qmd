@@ -1,0 +1,48 @@
+---
+title: "Campi Flegrei glass geochemistry"
+format:
+  pdf:
+    pdf-engine: xelatex
+    papersize: a4
+    fontsize: 10pt
+    geometry: margin=18mm
+    fig-format: pdf
+  docx: default
+---
+
+{{< meta affiliation >}}\
+{{< meta email >}}
+
+```{python}
+from analysis import load_data, scatter_plot, summary_table, MIN_SIO2
+
+data = load_data()
+n_analyses = len(data)
+n_eruptions = data["Eruption"].nunique()
+mean_sio2 = round(float(data["SIO2"].mean()), 2)
+```
+
+We use the glass-composition dataset (@Smith2011), selecting the Monte Nuovo, Astroni 6 and Fondi di Baia eruptions. Complete SiO~2~ and K~2~O analyses are retained with at least `{python} MIN_SIO2` wt. % SiO~2~. Oxides are used as supplied, without anhydrous normalization; counts refer to analyses, not necessarily independent samples.
+
+The selection contains **`{python} n_analyses` glass analyses** from **`{python} n_eruptions` eruptions**, with a mean SiO~2~ content of **`{python} mean_sio2` wt. %**.
+
+@fig-geochemistry shows the retained analyses; @tbl-geochemistry summarizes their compositions.
+
+```{python}
+#| label: fig-geochemistry
+#| fig-cap: "Glass compositions for the selected Campi Flegrei eruptions."
+#| fig-alt: "Scatter plot of potassium oxide against silica, colored by eruption."
+scatter_plot(data)
+```
+
+```{python}
+#| label: tbl-geochemistry
+#| tbl-cap: "Mean oxide contents by eruption (wt. %)."
+#| output: asis
+print(summary_table(data).to_markdown())
+```
+
+## References
+
+::: {#refs}
+:::

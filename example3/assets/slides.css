@@ -1,0 +1,10 @@
+.reveal #fig-geochemistry img {
+  width: 100%;
+  max-width: 100%;
+  height: auto !important;
+  object-fit: contain;
+}
+.reveal .compact-table table,
+.reveal .compact-table .quarto-float-caption {
+  font-size: 0.65em;
+}

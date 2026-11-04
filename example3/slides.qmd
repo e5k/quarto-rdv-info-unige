@@ -1,0 +1,52 @@
+---
+pagetitle: "Campi Flegrei glass geochemistry"
+suppress-bibliography: true
+format:
+  revealjs:
+    width: 1600
+    height: 900
+    slide-number: false
+    auto-stretch: false
+    css: assets/slides.css
+---
+
+## Campi Flegrei glass geochemistry
+
+```{python}
+from analysis import load_data, scatter_plot, summary_table, MIN_SIO2
+
+data = load_data()
+n_analyses = len(data)
+n_eruptions = data["Eruption"].nunique()
+mean_sio2 = round(float(data["SIO2"].mean()), 2)
+```
+
+The selection contains **`{python} n_analyses` glass analyses** from
+**`{python} n_eruptions` eruptions**, with a mean SiO~2~ content of
+**`{python} mean_sio2` wt. %**.
+
+:::: {.columns}
+::: {.column width="58%"}
+```{python}
+#| label: fig-geochemistry
+#| fig-cap: "Glass compositions for the selected Campi Flegrei eruptions."
+#| fig-alt: "Scatter plot of potassium oxide against silica, colored by eruption."
+scatter_plot(data)
+```
+:::
+::: {.column width="42%" .compact-table}
+```{python}
+#| label: tbl-geochemistry
+#| tbl-cap: "Mean oxide contents by eruption (wt. %)."
+#| output: asis
+print(summary_table(data).to_markdown())
+```
+
+SiO~2~ threshold: **`{python} MIN_SIO2` wt. %**.
+:::
+::::
+
+::: {.aside}
+{{< meta author >}} · {{< meta email >}}  
+{{< meta affiliation >}} · {{< meta date >}}
+:::

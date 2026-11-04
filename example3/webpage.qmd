@@ -1,0 +1,78 @@
+---
+title: "Campi Flegrei glass geochemistry"
+format:
+  html:
+    embed-resources: true
+    toc: true
+    css: assets/webpage.css
+    code-fold: true
+    code-summary: "Show Python code"
+execute:
+  echo: true
+---
+
+{{< meta affiliation >}}  
+{{< meta email >}}
+
+```{python}
+from analysis import load_data, scatter_plot, summary_table, MIN_SIO2
+
+data = load_data()
+n_analyses = len(data)
+n_eruptions = data["Eruption"].nunique()
+mean_sio2 = round(float(data["SIO2"].mean()), 2)
+```
+
+## Data and selection
+
+This example uses the major-element glass-composition dataset from the master's
+Data Science course, derived from @Smith2011. We select Monte Nuovo, Astroni 6
+and Fondi di Baia, retaining complete SiO~2~ and K~2~O analyses with
+at least `{python} MIN_SIO2` wt. % SiO~2~.
+Values are used as supplied, without anhydrous normalization.
+
+## Results in the text
+
+The selection contains **`{python} n_analyses` glass analyses** from
+**`{python} n_eruptions` eruptions**, with a mean SiO~2~ content of
+**`{python} mean_sio2` wt. %**.
+
+Those numbers come directly from the Python variables created above. In the
+source, the count is written as:
+
+```markdown
+The selection contains **`{python} n_analyses` glass analyses**.
+```
+
+## Figure
+
+```{python}
+#| label: fig-geochemistry
+#| fig-cap: "Glass compositions for the selected Campi Flegrei eruptions."
+#| fig-alt: "Scatter plot of potassium oxide against silica, colored by eruption."
+scatter_plot(data)
+```
+
+## Table
+
+```{python}
+#| label: tbl-geochemistry
+#| tbl-cap: "Mean oxide contents by eruption (wt. %)."
+#| output: asis
+print(summary_table(data).to_markdown())
+```
+
+Counts refer to analytical rows, not necessarily independent samples. The figure,
+table and inline values all use the same filtered dataframe.
+
+## Try a change
+
+In `analysis.py`, change `MIN_SIO2 = 0.0` to `MIN_SIO2 = 58.0`, then run
+`quarto render --to all` from the example folder. The plot, table and sentences update
+in all three outputs. The Python analysis is executed for each output; its logic
+is maintained in one place.
+
+## References
+
+::: {#refs}
+:::

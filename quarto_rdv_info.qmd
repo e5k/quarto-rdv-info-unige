@@ -1,0 +1,470 @@
+---
+title: "Introduction to Quarto"
+subtitle: "Write, analyze, and publish in a single document"
+---
+
+
+<!--
+
+- Heads up: I am not going to be able to go into all functionalities
+  - Rapid to get started, but customisation options are infinite, leaning towards potentially complex workflows
+
+ -->
+
+
+
+# Why [Quarto]{.alert}? {background-color="#2F4647"}
+
+
+## Why [Quarto]{.alert} {#ecosystem-slide}
+
+:::: {#ecosystem-diagram .ecosystem-animated}
+```{mermaid}
+%%| fig-width: 14
+flowchart LR
+    classDef input fill:#F2F7F6,stroke:#7CA6A0,stroke-width:1px,color:#2F4647;
+    classDef core fill:#2F4647,stroke:#2F4647,stroke-width:2px,color:#FFFFFF,font-weight:bold;
+    classDef engine fill:#FCEBDD,stroke:#D97838,stroke-width:2px,color:#87421D,font-weight:bold;
+    classDef output fill:#E4F0ED,stroke:#4F8C82,stroke-width:1px,color:#2F4647;
+    classDef history fill:#FFFFFF,stroke:#D97838,stroke-width:1px, color:#87421D;
+    linkStyle default stroke:#7A9290,stroke-width:1.5px;
+
+    C["fa:fa-code Analysis"]:::input
+    T["fa:fa-file-alt Text"]:::input
+    R["fa:fa-book References"]:::input
+
+    MD["fa:fa-file-alt Markdown"]:::history
+    LANG["fa:fa-code Python / R / Julia"]:::history
+    BIB["fa:fa-book BibTeX / Zotero"]:::history
+    QMD["fa:fa-file-code Quarto document<br/>(.qmd)"]:::core
+
+    Y["fa:fa-sliders-h YAML<br/>Settings & metadata"]:::history
+    PD["fa:fa-exchange-alt Pandoc<br/>Document conversion"]:::history
+    G["fa:fa-code-branch Git<br/>History & collaboration"]:::history
+    Q["fa:fa-cogs Quarto<br/>Computation + publishing"]:::engine
+
+    W["fa:fa-file-word Word<br/>Document"]:::output
+    P["fa:fa-file-pdf PDF<br/>Document"]:::output
+    Web["fa:fa-globe HTML<br/>Website"]:::output
+    S["fa:fa-chalkboard Slides<br/>Presentation"]:::output
+
+    %% First click: the source document and its ingredients.
+    T --> MD
+    C --> LANG
+    R --> BIB
+    MD --> QMD
+    LANG --> QMD
+    BIB --> QMD
+
+    %% Second click: computation, settings, conversion and publishing.
+    QMD ==> Q
+    Y --> Q
+    PD --> Q
+    G -.- QMD
+    Q ==> W
+    Q ==> P
+    Q ==> Web
+    Q ==> S
+
+    class MD,LANG,BIB,QMD step1;
+    class Y,PD,G,Q step2;
+```
+::::
+
+::: {.notes}
+
+Pandoc = Engine
+
+:::
+
+
+## Markdown {.tool-introduction}
+
+::: {.tool-summary}
+- [What?]{.alert} Lightweight markup for headings, lists, links and emphasis.  
+- [Why?]{.alert} Keep the source readable and focus on content and structure.
+:::
+
+<iframe src="https://quarto.org/docs/authoring/markdown-basics.html" title="Quarto Markdown Basics" width="100%" height="450" style="border:0;"></iframe>
+
+::: {.tool-source}
+[Open Quarto Markdown Basics ↗](https://quarto.org/docs/authoring/markdown-basics.html)
+:::
+
+## Pandoc {.tool-introduction}
+
+::: {.tool-summary}
+- [What?]{.alert} Converts documents between formats such as Markdown, HTML and Word.  
+- [Why?]{.alert} One source, many outputs: the conversion machinery inside Quarto.
+:::
+
+<iframe src="https://pandoc.org" title="Pandoc document converter" width="100%" height="450" style="border:0;"></iframe>
+
+::: {.tool-source}
+[Open the Pandoc website ↗](https://pandoc.org)
+:::
+
+## YAML {.tool-introduction}
+
+::: {.tool-summary}
+- [What?]{.alert} A readable data format built from keys, values and indentation.  
+- [Why?]{.alert} In Quarto: declare the document's metadata and publishing settings.
+:::
+
+<iframe src="https://yaml.org/about/" title="About YAML" width="100%" height="450" style="border:0;"></iframe>
+
+::: {.tool-source}
+[Open the YAML website ↗](https://yaml.org/about/)
+:::
+
+## Git {.tool-introduction}
+
+::: {.tool-summary}
+- [What?]{.alert} A distributed version control system that records changes to files.  
+- [Why?]{.alert} Keep a history, compare versions, and collaborate on shared work.
+:::
+
+<iframe src="https://git-scm.com" title="Git version control" width="100%" height="450" style="border:0;"></iframe>
+
+::: {.tool-source}
+[Open the Git website ↗](https://git-scm.com)
+:::
+
+## What is Quarto {.definition-fragments}
+
+<span style="font-size: 0.5em;"></span>
+
+::: {.nonincremental}
+
+- **Open-source scientific and technical [publishing system]{.alert}**
+  - Leverages modern tools for content and structure ([Markdown]{.alert}) and configuration ([YAML]{.alert})
+
+
+:::
+
+::: {.fragment .nonincremental}
+
+- **Favours [reproducibility]{.alert} and [transparency]{.alert}**
+  - Supports [executable code]{.alert} within text
+
+<span style="font-size: 0.5em;"></span>
+
+:::
+
+::: {.fragment .nonincremental}
+
+- **Supports [multiple output formats]{.alert}**
+  - [Pandoc]{.alert} is the conversion machinery underneath!
+
+<span style="font-size: 0.5em;"></span>
+
+:::
+
+::: {.fragment .nonincremental}
+
+- **Successor to R Markdown but [language-agnostic]{.alert}**
+  - *Python*, *R*, *Julia*, ...
+
+<span style="font-size: 0.5em;"></span>
+
+:::
+
+::: {.fragment .nonincremental}
+
+- **Integration in most IDE**
+  - *VS Code*, *RStudio*, *Jupyter*...
+
+<span style="font-size: 0.5em;"></span>
+
+:::
+
+::: {.notes}
+
+“You update an analysis. Now you need to replace a figure, change a number in the text, update the slides, and check the references. What if these pieces stayed connected?”
+
+- friction between writing, running analysis, producing figures and tables and formatting citations
+- how to favour reproducibility and transparency?
+- instead, one document for text, 
+:::
+
+
+## Getting started
+
+<iframe src="https://quarto.org/docs/get-started/" width="100%" height="650px" style="border:none;"></iframe>
+
+## Objectives
+
+[Aim]{.alert}: **Demonstrate the "Write, Analyze, Publish" workflow**
+
+::: {.fragment }
+- **Part I**: Quarto for [research]{.alert}
+  - Write a document [from scratch]{.alert}
+  - Write a document with a [more complex workflow]{.alert}
+  - Complex [multi-output]{.alert} workflow
+:::
+
+::: {.fragment }
+- **Part II**: Quarto for [teaching]{.alert}
+  - Write a [textbook website]{.alert}
+  - Add [interactive exercises]{.alert}
+  - Develop [interactive slides]{.alert}
+  - Online publication on [Github pages]{.alert}
+:::
+
+
+# Quarto for [research]{.alert}  {background-color="#2F4647"}
+
+## A first document from scratch
+
+
+<!-- BEGIN COL -->
+:::: {.columns} 
+::: {.column width="48%"}
+
+- **One document** containing:
+  - [Text]{.alert} (→ *Markdown*)
+  - [Code]{.alert} (→ *Python*)
+  - [Configuration]{.alert} (*→ YAML*)
+- **One output** → [HTML]{.alert}
+- Good strategy for **basic workflows**
+
+`quarto preview test_doc.md`
+`quarto render test_doc.md`
+
+
+
+:::
+::: {.column width="4%"}
+:::
+::: {.column width="48%"}
+
+<span style="font-size: 0.5em;">&nbsp;</span>
+
+
+::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
+```{mermaid}
+flowchart TB
+    %% Orange / teal theme
+    classDef input fill:#F2F7F6,stroke:#7CA6A0,color:#2F4647;
+    classDef source fill:#2F4647,stroke:#2F4647,color:#FFFFFF,font-weight:bold;
+    classDef engine fill:#FCEBDD,stroke:#D97838,stroke-width:2px,color:#87421D,font-weight:bold;
+    classDef output fill:#E4F0ED,stroke:#4F8C82,color:#2F4647;
+    linkStyle default stroke:#7A9290,stroke-width:1.5px;
+
+
+    DOC["fa:fa-file-alt test_doc.qmd<br/>Text + Python + Config"]:::source
+    Q["fa:fa-cogs Quarto + Pandoc"]:::engine
+    PDF["fa:fa-file-pdf test_doc.html"]:::output
+
+   
+    DOC --> Q
+    Q --> PDF
+```
+:::
+
+:::
+:::: 
+<!-- END COL -->
+
+
+::: {.notes}
+- Illustrate visual editor
+- Illustrate changes with git
+:::
+
+
+## One document, one PDF {.example-workflow}
+
+<!-- BEGIN COL -->
+:::: {.columns} 
+::: {.column width="48%"}
+
+- **More complex workflow**
+- **Separated**
+  - Configuration
+  - Dataset
+  - Bibliography
+- **One output** → [PDF]{.alert}
+
+`quarto preview`
+`quarto render`
+
+:::
+::: {.column width="4%"}
+:::
+::: {.column width="48%"}
+
+```{mermaid}
+flowchart TB
+    %% Orange / teal theme
+    classDef input fill:#F2F7F6,stroke:#7CA6A0,color:#2F4647;
+    classDef source fill:#2F4647,stroke:#2F4647,color:#FFFFFF,font-weight:bold;
+    classDef engine fill:#FCEBDD,stroke:#D97838,stroke-width:2px,color:#87421D,font-weight:bold;
+    classDef output fill:#E4F0ED,stroke:#4F8C82,color:#2F4647;
+    linkStyle default stroke:#7A9290,stroke-width:1.5px;
+
+    DATA["fa:fa-table Data"]:::input
+    BIB["fa:fa-book references.bib"]:::input
+    YAML["fa:fa-sliders-h _quarto.yml"]:::input
+
+    DOC["fa:fa-file-alt manuscript.qmd<br/>Text + Python"]:::source
+    Q["fa:fa-cogs Quarto + Pandoc"]:::engine
+    PDF["fa:fa-file-pdf manuscript.pdf"]:::output
+
+    DATA --> DOC
+    BIB --> YAML
+    YAML --> Q
+    DOC --> Q
+    Q --> PDF
+```
+:::
+:::: 
+<!-- END COL -->
+
+## One analysis, several documents {.example-workflow}
+
+```{mermaid}
+flowchart TB
+    %% Orange / teal theme
+    classDef input fill:#F2F7F6,stroke:#7CA6A0,color:#2F4647;
+    classDef source fill:#2F4647,stroke:#2F4647,color:#FFFFFF,font-weight:bold;
+    classDef engine fill:#FCEBDD,stroke:#D97838,stroke-width:2px,color:#87421D,font-weight:bold;
+    classDef output fill:#E4F0ED,stroke:#4F8C82,color:#2F4647;
+    linkStyle default stroke:#7A9290,stroke-width:1.5px;
+
+    %% Shared inputs
+    DATA["fa:fa-table Data"]:::input
+    PY["fa:fa-code analysis.py"]:::input
+
+    BIB["fa:fa-book references.bib"]:::input
+    YAML["fa:fa-sliders-h _quarto.yml"]:::input
+
+    %% Three document sources
+    SL["fa:fa-chalkboard slides.qmd"]:::source
+    DOC["fa:fa-file-alt manuscript.qmd"]:::source
+    WEB["fa:fa-globe webpage.qmd"]:::source
+
+    %% Rendering engine
+    Q["fa:fa-cogs Quarto + Pandoc"]:::engine
+
+    %% Outputs
+    REVEAL["fa:fa-chalkboard slides.html"]:::output
+    PDF["fa:fa-file-pdf manuscript.pdf"]:::output
+    WORD["fa:fa-file-word manuscript.docx"]:::output
+    HTML["fa:fa-globe webpage.html"]:::output
+
+    DATA --> PY
+
+    PY --> SL
+    PY --> DOC
+    PY --> WEB
+
+    BIB --> YAML
+    YAML --> Q
+
+    SL --> Q
+    DOC --> Q
+    WEB --> Q
+
+    Q --> REVEAL
+    Q --> PDF
+    Q --> WORD
+    Q --> HTML
+```
+
+# Quarto for [teaching]{.alert} {background-color="#2F4647"}
+
+## Text book
+
+<!-- BEGIN COL -->
+:::: {.columns} 
+::: {.column width="48%"}
+
+- **Teaching book**
+  - [Cross-referencing](https://e5k.github.io/outils-info-2/course/semaine_03.html#exercise)
+  - [Collaborative tools](https://e5k.github.io/outils-info-2/course/semaine_04.html)
+
+
+
+::: {.fragment }
+- **Exercises**
+  - Profiles for *[students](https://e5k.github.io/outils-info-2/course/semaine_06.html)*, *lecturer* or *[corrections](https://e5k.github.io/outils-info-2/course/semaine_03.html#charger-et-inspecter-le-catalogue)*
+  - Interactive [coding exercises](https://elste-master.github.io/Data-Science/class3/class_3_ex_2.html)
+
+:::
+
+:::
+::: {.column width="4%"}
+:::
+::: {.column width="48%"}
+
+::: {.fragment }
+- **Slides**
+  - Drawing
+  - Code [integration + animation](https://e5k.github.io/outils-info-2/slides/slides_semaine_04.html#/dispersion-et-valeurs-extrêmes)
+  - [Live coding](https://elste-master.github.io/Data-Science/slides/class_3_slides.html#/thin-vs-medium-crust-welchs-t-test) 
+  - Integration with [medias](https://e5k.github.io/Volcano/slides/class1.html#/vid2)
+  - [Other cool tools](https://e5k.github.io/Volcano/slides/class7.html#/tephra-fallout-isopach)
+
+:::
+:::
+:::: 
+<!-- END COL -->
+
+# Now what? {background-color="#2F4647"}
+
+## Conclusion
+
+... easy to get started
+
+... learning curve to get into some more complex workflows
+
+
+<span style="font-size: 0.5em;">&nbsp;</span>
+
+<!-- BEGIN COL -->
+:::: {.columns} 
+::: {.column width="48%"}
+
+
+::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
+This presentation / examples
+
+:::
+::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
+[<i class="fa-brands fa-github" style="font-size: 3em;"></i>](test.html)
+:::
+
+:::
+::: {.column width="4%"}
+:::
+::: {.column width="48%"}
+
+
+
+::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
+My teaching template
+
+:::
+::: {style="width:100%; display:flex; justify-content:center; text-align: center"}
+[<i class="fa-brands fa-github" style="font-size: 3em;"></i>](test.html)
+:::
+
+:::
+:::: 
+<!-- END COL -->
+
+::: {.notes}
+
+- Large community
+
+:::
+
+
+
+## Resources
+
+- [Quarto / Get started](https://quarto.org/docs/get-started/)
+- [Markdown](https://www.markdownguide.org)
+- [YAML](https://yaml.org/about/)
+- [Pandoc](https://pandoc.org)

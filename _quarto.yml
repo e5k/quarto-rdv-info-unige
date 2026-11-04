@@ -1,0 +1,18 @@
+metadata-files:
+- _template.yml
+project:
+  type: default
+  render:
+  - '*.qmd'
+author:
+- name: Sébastien Biass
+  id: sb
+  orcid: 0000-0002-1919-9473
+  email: sebastien.biasse@unige.ch
+  affiliation: Département des Sciences de la Terre et de l'Environnement
+# Profile links shown next to the first author’s ORCID icon.
+author-links:
+  researchgate: https://www.researchgate.net/profile/Sebastien-Biass?ev=hdr_xprf
+  github: https://github.com/e5k
+  scholar: https://scholar.google.com/citations?user=Vs5kVHEAAAAJ&hl=en
+  website: https://e5k.github.io
