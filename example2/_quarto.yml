@@ -2,7 +2,9 @@ project:
   type: default
   output-dir: _output
   render:
+    - slides.qmd
     - manuscript.qmd
+    - webpage.qmd
 
 author: Sébastien Biass
 email: sebastien.biasse@unige.ch
@@ -21,12 +23,3 @@ execute:
   freeze: false
 
 fig-dpi: 180
-
-title: "Campi Flegrei glass geochemistry"
-format:
-  pdf:
-    pdf-engine: xelatex
-    papersize: a4
-    fontsize: 10pt
-    geometry: margin=18mm
-    fig-format: pdf

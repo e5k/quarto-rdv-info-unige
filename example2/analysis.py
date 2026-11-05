@@ -1,4 +1,4 @@
-"""Shared data loading, plotting and group means for example 3."""
+"""Shared data loading, plotting and group means for example 2."""
 
 import pandas as pd
 import seaborn as sns

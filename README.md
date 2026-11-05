@@ -7,6 +7,5 @@ This repository contains the material used during the presentation entitled *[Qu
 - `quarto_rdv_info.*`: The presentation 
 - `_quarto.yml`: The quarto configuration file
 - `_template.yml`: The template configuration file
-- `example1/`: Quarto project associated with the example "*A first document from scratch*" in the presentation
-- `example2/`: Quarto project associated with the example "*One document, one PDF*" in the presentation
-- `example3/`: Quarto project associated with the example "*One analysis, several documents*" in the presentation
+- `example1/`: Quarto project associated with the example "*One document, one output*" in the presentation
+- `example2/`: Quarto project associated with the example "*One analysis, several outputs*" in the presentation

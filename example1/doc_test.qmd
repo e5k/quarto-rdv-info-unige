@@ -1,0 +1,37 @@
+---
+title: "Untitled"
+format: html
+---
+
+
+<!-- import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+url = "https://raw.githubusercontent.com/ELSTE-Master/Data-Science/main/Data/Smith_glass_post_NYT_data_majors.csv"
+data = pd.read_csv(url)
+data = data[data["Eruption"].isin(["Monte Nuovo", "Astroni 6", "Fondi di Baia"])]
+data = data.dropna(subset=["SIO2", "K2O"])
+
+n_analyses = len(data)
+n_eruptions = data["Eruption"].nunique()
+mean_sio2 = round(float(data["SIO2"].mean()), 2) -->
+
+
+
+
+
+
+
+
+
+<!-- ```{python}
+#| label: tbl-tbl1
+#| tbl-cap: "Mean oxide contents by eruption (wt. %)."
+#| output: asis
+#| echo: false
+
+table = data.groupby("Eruption")[["SIO2", "K2O"]].mean().round(2)
+print(table.to_markdown())
+``` -->
+

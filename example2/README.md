@@ -1,4 +1,4 @@
-# Example 3 - One analysis, three documents
+# Example 2 - One analysis, three documents
 
 ## Open the finished examples
 
